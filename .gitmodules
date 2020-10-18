@@ -1,0 +1,12 @@
+[submodule "modules/gl_scene"]
+	path = modules/gl_scene
+	url = git@github.com:Bazzzukasss/gl_scene.git
+[submodule "modules/custom_item"]
+	path = modules/custom_item
+	url = git@github.com:Bazzzukasss/custom_item.git
+[submodule "modules/app_common"]
+	path = modules/app_common
+	url = git@github.com:Bazzzukasss/app_common.git
+[submodule "modules/custom_setting"]
+	path = modules/custom_setting
+	url = git@github.com:Bazzzukasss/custom_setting.git
