@@ -10,6 +10,9 @@ namespace custom_setting
 namespace key
 {
 
+//UserSettings
+KEY(kUserSettings)
+
 // UserSettings
 KEY(kUserEditable)
 KEY(kUserNotEditable)
@@ -65,7 +68,7 @@ using CustomSettingArrayByteArray = SettingArray<DataByteArray>;
 
 class UserSettings : public Setting
 {
-    class GroupsSettings : public Setting
+    class GroupsSettings : public SettingBool
     {
         class GroupSettings : public SettingBool
         {
@@ -78,7 +81,7 @@ class UserSettings : public Setting
             SettingString mString {key::kGroupString, "String", "Tooltip text", {"text", "default text"}};
         };
      public:
-        GroupsSettings(const QString& key, const QString& caption, const QString& description, QObject* parent = nullptr);
+        GroupsSettings(const QString& key, const QString& caption, const QString& description,  const DataBool& data, QObject* parent = nullptr);
 
         GroupSettings mGroupA   {key::kGroupsGroupA, "Group A", "Tooltip text", {true, true}};
         GroupSettings mGroupB   {key::kGroupsGroupB, "Group B", "Tooltip text", {true, true}};
@@ -120,7 +123,7 @@ class UserSettings : public Setting
  public:
     UserSettings(QObject* parent = nullptr);
 
-    GroupsSettings mGroups              {key::kUserGroups, "Groups", "Tooltip text"};
+    GroupsSettings mGroups              {key::kUserGroups, "Groups", "Tooltip text", {true, true}};
     EditableSettings mEditable          {key::kUserEditable, "Editable", "Tooltip text"};
     NotEditableSettings mNotEditable    {key::kUserNotEditable, "Not Editable", "Tooltip text"};
 };

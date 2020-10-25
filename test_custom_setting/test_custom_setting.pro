@@ -11,7 +11,7 @@ INCLUDEPATH += \
 SOURCES += \
     ../modules/custom_setting/src/custom_setting.cpp \
     ../modules/custom_setting/src/custom_setting_data.cpp \
-    ../modules/custom_setting/src/custom_setting_loader.cpp \
+    ../modules/custom_setting/src/custom_setting_serializer.cpp \
     ../modules/custom_setting/src/custom_widgets.cpp \
     ../modules/custom_setting/src/custom_setting_item.cpp \
     ../modules/custom_setting/src/custom_setting_widget.cpp \
@@ -25,7 +25,7 @@ SOURCES += \
 HEADERS += \
     ../modules/custom_setting/include/custom_setting.h \
     ../modules/custom_setting/include/custom_setting_data.h \
-    ../modules/custom_setting/include/custom_setting_loader.h \
+    ../modules/custom_setting/include/custom_setting_serializer.h \
     ../modules/custom_setting/include/custom_widgets.h \
     ../modules/custom_setting/include/custom_setting_item.h \
     ../modules/custom_setting/include/custom_setting_widget.h \

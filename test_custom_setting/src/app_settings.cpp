@@ -3,9 +3,9 @@
 
 using namespace custom_setting;
 
-UserSettings::UserSettings(QObject* parent) : Setting({}, "User settings", "", parent)
+UserSettings::UserSettings(QObject* parent) : Setting(key::kUserSettings, "User settings", "", parent)
 {
-    addSettings({&mEditable, &mGroups, &mNotEditable});
+    addSettings({/*&mEditable, */&mGroups/*, &mNotEditable*/});
 }
 
 UserSettings::EditableSettings::EditableSettings(const QString &key, const QString &caption, const QString &description, QObject *parent)
@@ -21,8 +21,8 @@ UserSettings::NotEditableSettings::NotEditableSettings(const QString &key, const
     addSettings({&mByteArray, &mStringArray, &mArrayOfByteArrays, &mArrayOfRecords});
 }
 
-UserSettings::GroupsSettings::GroupsSettings(const QString &key, const QString &caption, const QString &description, QObject *parent)
-    : Setting(key, caption, description, parent)
+UserSettings::GroupsSettings::GroupsSettings(const QString &key, const QString &caption, const QString &description, const DataBool &data, QObject *parent)
+    : SettingBool(key, caption, description, data, parent)
 {
     addSettings({&mGroupA, &mGroupB, &mGroupC, &mGroupD, &mGroupE});
 }
