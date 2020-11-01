@@ -13,7 +13,6 @@ namespace custom_setting
 class AppSettingManager : public Manager
 {
     Q_OBJECT
-    const QString UserSettingsFilename{"usersettings.json"};
 
 public:
     AppSettingManager(QObject* parent = nullptr);

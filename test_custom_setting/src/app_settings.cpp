@@ -3,32 +3,32 @@
 
 using namespace custom_setting;
 
-UserSettings::UserSettings(QObject* parent) : Setting(key::kUserSettings, "User settings", "", parent)
+UserSettings::UserSettings(QObject* parent) : Setting(key::kUserSettings, "User settings", "", false, parent)
 {
-    addSettings({/*&mEditable, */&mGroups/*, &mNotEditable*/});
+    addSettings({&mEditable, &mGroups, &mNotEditable});
 }
 
-UserSettings::EditableSettings::EditableSettings(const QString &key, const QString &caption, const QString &description, QObject *parent)
-    : Setting(key, caption, description, parent)
+UserSettings::EditableSettings::EditableSettings(const QString &key, const QString &caption, const QString &description, bool read_only, QObject *parent)
+    : Setting(key, caption, description, read_only, parent)
 {
     addSettings({&mBool, &mInt, &mDouble, &mString, &mList, &mFont, &mColor, &mSourceFile, &mSourceDir,
-                 &mChangableListDir, &mChangableListFile, &mChangableListString});
+                 &mChangableListDir, &mChangableListFile, &mChangableListString, &mEditableList});
 }
 
-UserSettings::NotEditableSettings::NotEditableSettings(const QString &key, const QString &caption, const QString &description, QObject *parent)
-    : Setting(key, caption, description, parent)
+UserSettings::NotEditableSettings::NotEditableSettings(const QString &key, const QString &caption, const QString &description, bool read_only, QObject *parent)
+    : Setting(key, caption, description, read_only, parent)
 {
     addSettings({&mByteArray, &mStringArray, &mArrayOfByteArrays, &mArrayOfRecords});
 }
 
-UserSettings::GroupsSettings::GroupsSettings(const QString &key, const QString &caption, const QString &description, const DataBool &data, QObject *parent)
-    : SettingBool(key, caption, description, data, parent)
+UserSettings::GroupsSettings::GroupsSettings(const QString &key, const QString &caption, const QString &description, const DataBool &data, bool read_only, QObject *parent)
+    : SettingBool(key, caption, description, data, read_only, parent)
 {
     addSettings({&mGroupA, &mGroupB, &mGroupC, &mGroupD, &mGroupE});
 }
 
-UserSettings::GroupsSettings::GroupSettings::GroupSettings(const QString &key, const QString &caption, const QString &description, const DataBool &data, QObject *parent)
-    : SettingBool(key, caption, description, data, parent)
+UserSettings::GroupsSettings::GroupSettings::GroupSettings(const QString &key, const QString &caption, const QString &description, const DataBool &data, bool read_only, QObject *parent)
+    : SettingBool(key, caption, description, data, read_only, parent)
 {
     addSettings({&mBool, &mInt, &mDouble, &mString});
 }

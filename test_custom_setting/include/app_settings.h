@@ -31,6 +31,7 @@ KEY(kEditableSourceFile)
 KEY(kEditableListString)
 KEY(kEditableListDir)
 KEY(kEditableListFile)
+KEY(kEditableEditableList)
 
 // UserSettings/Groups
 KEY(kGroupsGroupA)
@@ -73,7 +74,7 @@ class UserSettings : public Setting
         class GroupSettings : public SettingBool
         {
          public:
-            GroupSettings(const QString& key, const QString& caption, const QString& description, const DataBool& data, QObject* parent = nullptr);
+            GroupSettings(const QString& key, const QString& caption, const QString& description, const DataBool& data,bool read_only = false, QObject* parent = nullptr);
 
             SettingBool mBool     {key::kGroupBool, "Boolean", "Tooltip text", {true}};
             SettingInt mInt       {key::kGroupInt, "Integer", "Tooltip text", {100, 0, 2147483647, 100}};
@@ -81,7 +82,7 @@ class UserSettings : public Setting
             SettingString mString {key::kGroupString, "String", "Tooltip text", {"text", "default text"}};
         };
      public:
-        GroupsSettings(const QString& key, const QString& caption, const QString& description,  const DataBool& data, QObject* parent = nullptr);
+        GroupsSettings(const QString& key, const QString& caption, const QString& description,  const DataBool& data, bool read_only = false, QObject* parent = nullptr);
 
         GroupSettings mGroupA   {key::kGroupsGroupA, "Group A", "Tooltip text", {true, true}};
         GroupSettings mGroupB   {key::kGroupsGroupB, "Group B", "Tooltip text", {true, true}};
@@ -92,30 +93,32 @@ class UserSettings : public Setting
 
     class EditableSettings : public Setting
     {
+        static constexpr bool kIsReadOnly{false};
      public:
-        EditableSettings(const QString& key, const QString& caption, const QString& description, QObject* parent = nullptr);
+        EditableSettings(const QString& key, const QString& caption, const QString& description, bool read_only = false, QObject* parent = nullptr);
 
-        SettingBool mBool                             {key::kEditableBool, "Boolean", "Tooltip text", {true}};
-        SettingInt mInt                               {key::kEditableInt, "Integer", "Tooltip text", {100, 0, 2147483647, 100}};
-        SettingDouble mDouble                         {key::kEditableDouble, "Double", "Tooltip text", {0.0, 0, 100, 0.0, 3}};
-        SettingString mString                         {key::kEditableString, "String", "Tooltip text", {"text", "default text"}};
-        SettingStringList mList                       {key::kEditableList, "List", "Tooltip text", {{"Red", "Green", "Blue"}, "Green"}};
-        SettingFont mFont                             {key::kEditableFont, "Font", "Tooltip text", {QFont(), QFont()}};
-        SettingColor mColor                           {key::kEditableColor, "Color", "Tooltip color", {QColor(), QColor()}};
-        SettingSource mSourceDir                      {key::kEditableSourceDir, "Directory", "Tooltip text", {"", "", DataSource::kDir}};
-        SettingSource mSourceFile                     {key::kEditableListFile, "File", "Tooltip text", {"", "", DataSource::kFile}};
-        SettingChangeableList mChangableListString    {key::kEditableListString, "Changable list", "Tooltip text", {{""}, {""}, DataChangeableList::kStringList, true, ""}};
-        SettingChangeableList mChangableListDir       {key::kEditableListDir, "Changable directories list", "Tooltip text", {{""}, {""}, DataChangeableList::kDirList, true, ""}};
-        SettingChangeableList mChangableListFile      {key::kEditableListFile, "Changable files list", "Tooltip text", {{""}, {""}, DataChangeableList::kFileList, true, "Text files (*.txt)"}};
+        SettingBool mBool                             {key::kEditableBool, "Boolean", "Tooltip text", {true}, kIsReadOnly};
+        SettingInt mInt                               {key::kEditableInt, "Integer", "Tooltip text", {100, 0, 2147483647, 100}, kIsReadOnly};
+        SettingDouble mDouble                         {key::kEditableDouble, "Double", "Tooltip text", {0.0, 0, 100, 0.0, 3}, kIsReadOnly};
+        SettingString mString                         {key::kEditableString, "String", "Tooltip text", {"text", "default text"}, kIsReadOnly};
+        SettingStringList mList                       {key::kEditableList, "List", "Tooltip text", {{"Red", "Green", "Blue"}, "Green"}, kIsReadOnly};
+        SettingFont mFont                             {key::kEditableFont, "Font", "Tooltip text", {QFont(), QFont()}, kIsReadOnly};
+        SettingColor mColor                           {key::kEditableColor, "Color", "Tooltip color", {QColor(), QColor()}, kIsReadOnly};
+        SettingSource mSourceDir                      {key::kEditableSourceDir, "Directory", "Tooltip text", {"", "", DataSource::kDir}, kIsReadOnly};
+        SettingSource mSourceFile                     {key::kEditableSourceFile, "File", "Tooltip text", {"", "", DataSource::kFile}, kIsReadOnly};
+        SettingChangeableList mChangableListString    {key::kEditableListString, "Changable list", "Tooltip text", {{""}, {""}, DataChangeableList::kStringList, true, ""}, kIsReadOnly};
+        SettingChangeableList mChangableListDir       {key::kEditableListDir, "Changable directories list", "Tooltip text", {{""}, {""}, DataChangeableList::kDirList, true, ""}, kIsReadOnly};
+        SettingChangeableList mChangableListFile      {key::kEditableListFile, "Changable files list", "Tooltip text", {{""}, {""}, DataChangeableList::kFileList, true, "Text files (*.txt)"}, kIsReadOnly};
+        SettingEditableList mEditableList             {key::kEditableEditableList, "Editable list", "Tooltip text", {{"111","222","333"},{"d111","d222","d333"}}, kIsReadOnly};
     };
 
     class NotEditableSettings : public Setting
     {
      public:
-        NotEditableSettings(const QString& key, const QString& caption, const QString& description, QObject* parent = nullptr);
+        NotEditableSettings(const QString& key, const QString& caption, const QString& description, bool read_only = false, QObject* parent = nullptr);
 
-        SettingByteArray mByteArray               {key::kNotEditableByteArray, "Byte array", "Tooltip text"};
-        SettingArrayString mStringArray           {key::kNotEditableStringArray, "String array", "Tooltip text"};
+        SettingByteArray mByteArray                     {key::kNotEditableByteArray, "Byte array", "Tooltip text"};
+        SettingArrayString mStringArray                 {key::kNotEditableStringArray, "String array", "Tooltip text"};
         CustomSettingArrayOfRecords mArrayOfRecords     {key::kNotEditableArrayOfRecords, "Array of records", "Tooltip text"};
         CustomSettingArrayByteArray mArrayOfByteArrays  {key::kNotEditableArrayOfByteArray, "Array of byte arrays", "Tooltip text"};
     };
