@@ -15,8 +15,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->mSettingsWidget->setItemWidth(-1);
     //ui->mSettingsWidget->setItemHeight(-1);
     ui->mSettingsWidget->setOneClickMode(true);
-    ui->mSettingsWidget->view()->setAlternatingRowColors(false);
-    ui->mSettingsWidget->view()->setColumnWidth(0, 230);
+    ui->mSettingsWidget->setAlternatingRowColors(false);
+    ui->mSettingsWidget->setColumnWidth(0, 230);
 
     ui->mSettingsWidget->add(&mSettingManager.mUserSettings);
 

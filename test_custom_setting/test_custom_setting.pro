@@ -37,7 +37,6 @@ HEADERS += \
 
 FORMS += \
     forms/main_window.ui \
-    ../modules/custom_setting/forms/custom_setting_tree_widget.ui \
     ../modules/custom_setting/forms/custom_setting_widget.ui
 
 # Default rules for deployment.
