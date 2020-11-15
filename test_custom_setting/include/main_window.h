@@ -2,6 +2,7 @@
 
 #include <QMainWindow>
 #include "app_setting_manager.h"
+#include "custom_setting_item_tree_model.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -18,4 +19,5 @@ public:
 private:
     Ui::MainWindow *ui;
     custom_setting::AppSettingManager mSettingManager;
+    custom_setting::ItemTreeModel mModel;
 };

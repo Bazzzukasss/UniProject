@@ -17,6 +17,8 @@ SOURCES += \
     ../modules/custom_setting/src/custom_setting_widget.cpp \
     ../modules/custom_setting/src/custom_setting_manager.cpp \
     ../modules/custom_setting/src/custom_setting_tree_widget.cpp \
+    ../modules/custom_setting/src/custom_setting_item_tree_model.cpp \
+    ../modules/custom_setting/src/custom_setting_item_delegate.cpp \
     src/main.cpp \
     src/main_window.cpp \
     src/app_settings.cpp \
@@ -31,13 +33,14 @@ HEADERS += \
     ../modules/custom_setting/include/custom_setting_widget.h \
     ../modules/custom_setting/include/custom_setting_manager.h \
     ../modules/custom_setting/include/custom_setting_tree_widget.h \
+    ../modules/custom_setting/include/custom_setting_item_tree_model.h \
+    ../modules/custom_setting/include/custom_setting_item_delegate.h \
     include/main_window.h \
     include/app_settings.h \
     include/app_setting_manager.h
 
 FORMS += \
-    forms/main_window.ui \
-    ../modules/custom_setting/forms/custom_setting_widget.ui
+    forms/main_window.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
