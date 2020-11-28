@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/user_icons">
+        <file>1.svg</file>
+        <file>2.svg</file>
+        <file>3.svg</file>
+        <file>4.svg</file>
+        <file>5.svg</file>
+    </qresource>
+</RCC>
