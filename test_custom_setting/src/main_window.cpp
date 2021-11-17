@@ -59,7 +59,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->mSettingsWidget->add(itemRoot);
 
-    mModel.setItems(itemRoot);
+    mModel.setRootItem(itemRoot);
     mModel.setHeaders({"1","2","3","4","5","7","8","9","10","11","12","13"});
     auto delegate = new Delegate(this);
     ui->mTreeView->setModel(&mModel);

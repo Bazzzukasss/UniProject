@@ -18,7 +18,7 @@ UserSettings::EditableSettings::EditableSettings(const QString &key, const QStri
 UserSettings::NotEditableSettings::NotEditableSettings(const QString &key, const QString &caption, const QString &description, bool read_only, QObject *parent)
     : Setting(key, caption, description, read_only, parent)
 {
-    addSettings({&mByteArray, &mStringArray, &mArrayOfByteArrays, &mArrayOfRecords});
+    addSettings({&mByteArray});
 }
 
 UserSettings::GroupsSettings::GroupsSettings(const QString &key, const QString &caption, const QString &description, const DataBool &data, bool read_only, QObject *parent)
